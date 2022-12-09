@@ -1,0 +1,47 @@
+import math
+#fibolist will store all the numbers that are fibonacci numbers from the numbers entered in a list format 
+fibolist=[]    
+#notfibolist will store all the numbers that are not fibonacci in a list format 
+notfibolist=[]
+#f and nf are working as flag variables 
+f=0
+nf=0
+#a is used to store the entered numbers in a list format
+print("Enter numbers seperated by comma below...")
+a=list(map(int,input().split(",")))
+#this function returns boolean response if the number is a perfect square or not
+def isPerfectSquare(x):
+    s=int(math.sqrt(x))
+    return s*s==x     
+    #this funtion returns a boolean if a number is a fibonacci number 
+    #a number is a fibonacci number when (5*(n*2)+5) or (5(n**2)-4) or both are a perfect square      
+def isFibonacci(n):
+     return isPerfectSquare(5*n*n + 4) or isPerfectSquare(5*n*n - 4)
+#printing final numbers WRT them being fibonacci or not                
+for i in a:
+    if isFibonacci(i)==True:
+        fibolist.append(i)
+        f=1
+    else:
+        notfibolist.append(i)
+        nf=1
+fibolist.sort()
+notfibolist.sort()
+x=len(notfibolist)
+nfl=notfibolist[x-1]
+x=len(fibolist)
+fl=fibolist[x-1]
+if f==1:
+    for i in fibolist:
+        if i==fl:
+            print(str(i),end=" ")
+        else:
+            print(str(i),end=", ")
+    print(" is/are valid Fibonacci numbers.")
+if nf==1:
+    for i in notfibolist:
+        if i==nfl:
+            print(str(i),end=" ")
+        else:
+            print(str(i),end=", ")
+    print("is/are invalid Fibonacci numbers.")
